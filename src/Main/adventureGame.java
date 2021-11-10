@@ -170,7 +170,7 @@ public class adventureGame {
         if (yesOrNo.equalsIgnoreCase("yes")){ //if they want to buy it starts the loop
             while(true){ //start of shop loop
             System.out.println(shopItems[0] + " " + shopItemPricesGold[0] + ", " + shopItems[1] + " " + shopItemPricesGold[1] + ", " + shopItems[2] + " " + shopItemPricesGold[2]);
-            System.out.println("Choose which item you would like to purchase (Press 1, 2, or 3"); //< asks for user input. ^ prints out shop items ^
+            System.out.println("Choose which item you would like to purchase (Press 1, 2, or 3)"); //< asks for user input. ^ prints out shop items ^
             String itemPurchase = purchaseChoice.nextLine(); //scans for user input
          //continues the loop if the user says yes
         if (itemPurchase.equalsIgnoreCase("1")){ 
