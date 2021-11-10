@@ -9,59 +9,58 @@ import static java.lang.System.exit;
  * @author Daniel Axenti, Jarod Humby, Ryan Azizpour, Victor Jang 
  */
 public class adventureGame {
-    public static int mcHealth = 20; //your health
+   public static int mcHealth = 20; //your health
     public static int mcDefense = 0; //your defense
     public static int mcAttack = 1; //your attack
-    public static int rathealth = 3; //basic enemy health
-    public static int ratdefense = 0; //basic enemy defense
-    public static int ratattack = 1; //basic enemy attack
+    public static int ratHealth = 3; //basic enemy health
+    public static int ratDefense = 0; //basic enemy defense
+    public static int ratAttack = 1; //basic enemy attack
     public static int bossHealth = 200; //boss health
     public static int bossAttack = 5; //boss attack
     public static int turns=0; //turns
     public static int gold = 7; //gold
-    public static String [ ] inventory = new String [4]; //inventory array
-    public static boolean secondBlock = true; 
+    public static String [ ] inventory = new String [4]; //global inventory array
+    public static boolean secondBlock = true;  
     //^declaring global variables^
     public static void battleCode(){
-    Scanner newScan = new Scanner(System.in);
+    Scanner newScan = new Scanner(System.in); //im
     boolean turnEnd=false;
-    do{
-    int enemyTurn=0;
-    int playerTurn = 1;
-        System.out.println("You encounter an enemy!!");
-        System.out.println("A weak sewer Rat had appeared!");
-        System.out.println("Your stats are: " + "Health:" + mcHealth + "  " +"Defense:" + mcDefense + "  " + "Attack:" + mcAttack);
-        System.out.println("The weak sewer rat's stats are: " + "Health:" +rathealth + "  " + "Defense:" +ratdefense + "  " + " Attack:" +ratattack);
+    do{ // put this whole thing in a do loop
+    int enemyTurn=0; // set the enemy turn integer to 0
+    int playerTurn = 1; // set player turn to 1
+        System.out.println("You encounter an enemy!!"); // tell the use what is happening
+        System.out.println("A weak sewer Rat had appeared!"); // etc
+        System.out.println("Your stats are: " + "Health:" + mcHealth + "  " +"Defense:" + mcDefense + "  " + "Attack:" + mcAttack);// tell the main character the stats
+        System.out.println("The weak sewer rat's stats are: " + "Health:" +ratHealth + "  " + "Defense:" +ratDefense + "  " + " Attack:" +ratAttack); // tell the user the enemy's stats
         
-        while (playerTurn==1){
-        System.out.println("You can attack, press x to attack");
-        String actionBattle=newScan.nextLine();
-        if (actionBattle.equals("x")){
-            rathealth=rathealth-mcAttack;
-            System.out.println("Enemy has " + rathealth + " health");
-            if (mcDefense>=0){
-                ratattack = (ratattack - mcDefense);
-            
+        while (playerTurn==1){ // set te while loop so that this runs forever until some of the stuff is fufilled
+        System.out.println("You can attack, press x to attack"); // tell the player how to attack
+        String actionBattle=newScan.nextLine(); // scan for input on the next line
+        if (actionBattle.equals("x")){ // if the user inputs "x" the code will inititate
+            ratHealth=ratHealth-mcAttack; // ememy's health equals its health minus you value
+            System.out.println("Enemy has " + ratHealth + " health"); // print and tell the user the enemy's health
+            if (mcDefense>=0){ // state if the defense equals or is greater than zero the rats attack its attack minus the player's defense
+                ratAttack = (ratAttack - mcDefense);
         }
-            
         }//attack if statement
-        if (enemyTurn==0){
+        if (enemyTurn==0){ // if the enemy's turn equals 0
             System.out.println("The enemy is now attacking!!");
-            mcHealth=(mcHealth-ratattack);
+            mcHealth=(mcHealth-ratAttack);
             System.out.println("Now you have " + mcHealth + " health");
         }
-        if (rathealth<=0){
+        if (ratHealth<=0){ // if the enemy's health equals 0 or less than zero
             System.out.println("You killed the enemy! Goodjob!");
             System.out.println("You have " + mcHealth + " health");     
-            turnEnd=false;
-            playerTurn=0;
-            rathealth = (turns + 2 );
+            turnEnd=false; // set turnend to false 
+            playerTurn=0; // set the player turn to zero
+            ratHealth = (turns + 2 ); // special feature tat the rathealth increases per turn, making it stronger depending on the turns + 2 it will have 2 more health than the round number
+            ratAttack = (turns + 1); 
         }
         
-        if (mcHealth<=0){
-            playerTurn=0;
-             System.out.println("Game Over!!!You have died XD");
-             break;
+        if (mcHealth<=0){ // if the player's health equals 0 you are dead
+            playerTurn=0; // reset the player turn count
+             System.out.println("Game Over!!!You have died XD"); // you died
+             break; // break the code so that it does not continue
             } 
         } //while loop for player turn
     }while (turnEnd==true);//do loop
@@ -73,10 +72,10 @@ public class adventureGame {
             int playerTurn = 0;
             do{
             playerTurn = 1;
-                System.out.println("You have encountered the final boss! The King rat!");
+                System.out.println("You have encountered the final boss! The King rat!"); 
                 System.out.println("Are you ready to fight the final boss? get ready!");
                 System.out.println("Your stats are: " + "Health:" + mcHealth + "  " +"Defense:" + mcDefense + "  " + "Attack:" + mcAttack);
-                
+                //final boss intro
                 while (playerTurn == 1){
                 int bossTurn = 0;
                 String actionBattle=newScan.nextLine();
@@ -109,7 +108,8 @@ public class adventureGame {
            }while (finalBattle==false); //runs do loop until finalBattle = true (boss is killed)
     }
 
-    public static void displayInventory(){ //custom method made by Ryan for displaying the inventory
+
+    public static void displayInventory(){ //custom method made by Daniel for displaying the inventory
         System.out.print("Inventory: ");
         System.out.println(" ");
         for (int x =0; x<3;x++){ //x is a local variable only used in the for loop
@@ -235,7 +235,7 @@ public class adventureGame {
         inventory [2] = "no consumables";
         inventory [3] = "no consumables"; //fills in the inventory with placeholders instead of "null"
     
-    System.out.println("You wake up in a dirty sewer...");
+    System.out.println("You wake up in a dirty sewer...");//lore :)
     System.out.println("You're naked, hungry, dirty, and smelly...");
         
         try {
@@ -245,7 +245,7 @@ public class adventureGame {
     }
         
     System.out.println("You see a light in the distance...");
-    //yuou find a stick
+    //you find a stick
         
         try {
         Thread.currentThread().sleep(1 * 2000);
@@ -254,46 +254,45 @@ public class adventureGame {
     }
 
     System.out.println("You enbark forwards towards the light.");
-boolean turnEnd= false;
-boolean firstBlock=true;
-
+boolean turnEnd= false;//for turns to end
+boolean firstBlock=true;// for the first five turns to loop
 do{//do loop for the fisrt five turns
 do{//do loop for the singular turns
-if (turns <5 ){
-    while(true){
+if (turns <5 ){//loop
+    while(true){//loop for the user to be able to press "inventory multiple times"
         Scanner newScan= new Scanner(System.in); 
         System.out.println();
         System.out.println("You can go forward (w) or check your inventory/use items (i)");
         String action=newScan.nextLine();    
     if (action.equalsIgnoreCase("i")){
-        displayInventory();
-    }
-    if (action.equalsIgnoreCase("w")){
-        turns += 1;
-        break;
+        displayInventory();//displays inventory (references the method)
+    }if (action.equalsIgnoreCase("w")){
+        turns += 1;//increces turns so that the computer knows when shop is gonna be
+        break;//moves on to the next code 
     }//end of turn "w"
     }//end of while
     double battleNum=Math.random();
-    int max1=4;
+    int max1=4;//deciding factor for the battles 
     int min1=1;
     int battle=(int)(battleNum* max1 + min1);
-  
-    if (battle==1){
+    //calculation to see if the battle will happen
+    if (battle==1){//if battle is 1 the battle code runs
         battleCode();
-        if (mcHealth<=0){
+        if (mcHealth<=0){//if the player dies the program ends
+            System.out.println("YOU DIED! LOL!");
             exit(0);
         }
     }//battle if statement
-    else{
+    else{//if a battle does not happen you collect gold, and dont lose anything
         System.out.println("You pass freely (nothing happened).");
-        System.out.println("you collect 10 gold!");
-        gold += 10;
-        turnEnd=true;
+        System.out.println("you collect 5 gold!");
+        gold += 5;
+        turnEnd=true;//turnEnd makes the program run again
     }
     }else if (turns == 5){
     shopArea(1);
-    firstBlock=false;
-    turnEnd=false;
+    firstBlock=false;//ends the first block to move onto the next
+    turnEnd=false;//ends the turns loop moves onto the next block
     //at the end of the shop code make fistBlock equal false
 }//turn if statement
 
@@ -301,11 +300,10 @@ if (turns <5 ){
 }while (firstBlock==true);//do loop for first 5 turns
 
 int turns2=0;
-boolean secondBlock=true;
-do{
-do{
+boolean secondBlock=true; //local variable
+do{//do loop for the second 5 turns
+do{//for the singular turns 
 if (turns2<5){
-    
 while(true){
     Scanner newScan= new Scanner(System.in); 
     System.out.println();
@@ -321,37 +319,36 @@ while(true){
     }//end of turn 
 }//end of while
     double battleNum=Math.random();
-    int max1=3;
+    int max1=3;//changes the chances of a battle to 33% instead of 25%
     int min1=1;
     int battle=(int)(battleNum* max1 + min1);
     
-    if (battle==1){
-        battleCode();
-        if (mcHealth<=0){
+    if (battle==1){//if the computer randomly picks 1 a fight happens
+        battleCode();//references the battle code method
+        if (mcHealth<=0){//if you die the code exits
             exit(0);
+            System.out.println("YOU DIED!! LOL");
         }
     }//battle if statement
-    else{
+    else{//if theres no fight you get gold
         System.out.println("You pass freely (nothing happened).");
-        System.out.println("you collect 10 gold!");
-        gold += 10;
-        turnEnd=true;
-    }
+        System.out.println("you collect 7 gold!");
+        gold += 7;
+        turnEnd=true;//runs through the code again 
+    }//else
 }//if statemetn for turns 5-9
-else if (turns2 == 5){
-shopArea(2);
-    secondBlock=false;
-    turnEnd=false;
+else if (turns2 == 5){//if 5 turns happened in the second block you come to a shop
+shopArea(2);//references the shop code method
+secondBlock=false;//moves onto the next code
+turnEnd=false;//moves onto the next code
 }
 //at the end of the shop code make fistBlock equal false
 }while (turnEnd==true);//do loop
-}while (secondBlock==true);
+}while (secondBlock==true);//do loop for second 5 turns
 
-
-    System.out.println("Big boss fight!!! get ready!");
-    bossCode();
-
+System.out.println("Big boss fight!!! get ready!");
+bossCode();//refences the boss fight code
+//thanks for being a great teacher :P
     
     }//end of main
 }//end of public class
-
