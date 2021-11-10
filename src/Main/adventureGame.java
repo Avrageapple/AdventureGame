@@ -67,7 +67,7 @@ public class adventureGame {
     }while (turnEnd==true);//do loop
     }
     
-    public static void bossCode(){
+        public static void bossCode(){
         Scanner newScan = new Scanner(System.in);
         boolean finalBattle=false;
             int playerTurn = 0;
@@ -84,29 +84,29 @@ public class adventureGame {
                         bossHealth = bossHealth - mcAttack;
                         System.out.println("The boss now has:" + bossHealth + "health");
                         bossTurn = 0;
-                    }
+                    } //you attack the boss + boss health displayed
                     if (bossTurn==0){
                         System.out.println("The boss is now attacking!!");
                         mcHealth=(mcHealth-bossAttack);
                         playerTurn=1;
                         System.out.println("Now you have " + mcHealth + " health");
-                    }
+                    } //boss attacks + your health after attack is displayed  
                     if (bossHealth<=50){
                         System.out.println("THE BOSS IS ENRAGED!! ROAAAAAAR!! attacks are doubled.");
                         bossAttack= (bossAttack*2);
-                    }
+                    }// gives the boss double attack when he reaches 50 hp 
                     if (bossHealth<=0){
                         System.out.println("You killed the boss! Goodjob!");
                         finalBattle=true;
                         playerTurn=0;
-                    }
+                    } //ends game when you beat the boss/boss has 0 hp
                     if (mcHealth<=0){
                         System.out.println("Game Over!!!You have died XD");
-                        break;
-                    }
+                        break; //breaks while loop
+                    } // ends battle when you have 0 hp or lower 
                 }
-            break;
-           }while (finalBattle==false);
+            break; //breaks do loop 
+           }while (finalBattle==false); //runs do loop until finalBattle = true (boss is killed)
     }
 
     public static void displayInventory(){ //custom method made by Ryan for displaying the inventory
