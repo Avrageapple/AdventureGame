@@ -6,7 +6,7 @@ import static java.lang.System.exit;
  *name: adventure game
  * description: adventure game where you go through the sewer and kill rats
  * with a boss fight and shops  
- * @author Daniel Axenti, Jarod Humby, Ryan Azizpour, Victor Jang 
+ * @author Daniel Axenti, Jarod Humby, Ryan Azizpour, Victor Jiang 
  */
 public class adventureGame {
    public static int mcHealth = 20; //your health
@@ -22,8 +22,8 @@ public class adventureGame {
     public static String [ ] inventory = new String [4]; //global inventory array
     public static boolean secondBlock = true;  
     //^declaring global variables^
-    public static void battleCode(){
-    Scanner newScan = new Scanner(System.in); //im
+    public static void battleCode(int battle){ //Custom method made by Victor for the battles
+    Scanner newScan = new Scanner(System.in);   
     boolean turnEnd=false;
     do{ // put this whole thing in a do loop
     int enemyTurn=0; // set the enemy turn integer to 0
@@ -64,9 +64,9 @@ public class adventureGame {
             } 
         } //while loop for player turn
     }while (turnEnd==true);//do loop
-    }
+    }//end of method
     
-        public static void bossCode(){
+     public static void battleCode(double bossBattle){ //Custom method made by Jarod for the boss fight
         Scanner newScan = new Scanner(System.in);
         boolean finalBattle=false;
             int playerTurn = 0;
@@ -77,7 +77,7 @@ public class adventureGame {
                 System.out.println("Your stats are: " + "Health:" + mcHealth + "  " +"Defense:" + mcDefense + "  " + "Attack:" + mcAttack);
                 //final boss intro
                 while (playerTurn == 1){
-                int bossTurn = 0;
+                int bossTurn = 0; //local variable inside while loop that indicates when its the bosses turn
                 String actionBattle=newScan.nextLine();
                     if (actionBattle.equals("x")){
                         bossHealth = bossHealth - mcAttack;
@@ -106,8 +106,7 @@ public class adventureGame {
                 }
             break; //breaks do loop 
            }while (finalBattle==false); //runs do loop until finalBattle = true (boss is killed)
-    }
-
+    }//end of method
 
     public static void displayInventory(){ //custom method made by Daniel for displaying the inventory
         System.out.print("Inventory: ");
@@ -123,7 +122,7 @@ public class adventureGame {
         System.out.println("Attack: " + mcAttack);
         System.out.println("Gold: " + gold);
         System.out.println("Turn: " + turns); //prints out the stats when checking the inventory
-}
+}//end of method
     public static void shopArea(int shopNumber){ //custom method made by Ryan for the shop to function
             String [] shopItems = {"","",""}; //declaring the shop item array (local only inside the method)
             String [] shopItemPricesGold = {"","",""}; //declaring the shop item attributes (local only inside the method)
@@ -277,7 +276,7 @@ if (turns <5 ){//loop
     int battle=(int)(battleNum* max1 + min1);
     //calculation to see if the battle will happen
     if (battle==1){//if battle is 1 the battle code runs
-        battleCode();
+        battleCode(1);
         if (mcHealth<=0){//if the player dies the program ends
             System.out.println("YOU DIED! LOL!");
             exit(0);
@@ -324,7 +323,7 @@ while(true){
     int battle=(int)(battleNum* max1 + min1);
     
     if (battle==1){//if the computer randomly picks 1 a fight happens
-        battleCode();//references the battle code method
+        battleCode(1);//references the battle code method
         if (mcHealth<=0){//if you die the code exits
             exit(0);
             System.out.println("YOU DIED!! LOL");
@@ -347,7 +346,7 @@ turnEnd=false;//moves onto the next code
 }while (secondBlock==true);//do loop for second 5 turns
 
 System.out.println("Big boss fight!!! get ready!");
-bossCode();//refences the boss fight code
+battleCode(1.0);//refences the boss fight code
 //thanks for being a great teacher :P
     
     }//end of main
