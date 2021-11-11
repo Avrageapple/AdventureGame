@@ -228,7 +228,7 @@ public class adventureGame {
         }//end of if statement
         }//end of method
 
-    public static void main (String [] args){
+    public static void main (String [] args){ //Written mostly by Daniel with help from Ryan to integrate the methods
         inventory [0] = "no weapon";
         inventory [1] = "no clothing";
         inventory [2] = "no consumables";
